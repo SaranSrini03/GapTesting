@@ -8,31 +8,24 @@
 }
 
 .container2 {
-    border: 1px solid var(--black);
+    /* border: 1px solid var(--black); */
     width: 80%;
     height: 40rem;
     border-radius: 0px 10px 10px 0px;
-    margin-top: 31px;
+    margin-top: 20px;
     margin-left: -32px;
   }
-  
-  .rightP {
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    margin: 0.5rem;
-  }
-  
-  .p2 {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-left: 5rem;
-  }
+.p2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 5rem;
+}
   
 
 
 .rectContainer {
-    display: flex;
+  display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -42,7 +35,24 @@
     margin: 10px;
     background-color: var(--black);
     opacity: 0;
-    transition: opacity 0.9s ease-in-out; /* Adjust transition time as needed */
+    transition: opacity 0.5s ease-in-out; /* Adjust transition time as needed */
+    font-size: 15px;
+    text-align: center;
+    padding:4px;
+    
+    
+  }
+  .rectText{
+    margin-top: 5px;
+    font-weight: 600;
+    color: rgb(131, 131, 131);
+  }
+  .rectSubtitle{
+    margin: 20px auto;
+    font-weight: 600;
+    color: white;
+    font-size: 2rem;
+
   }
   .rect:hover{
     transform: scale(1.01);
@@ -52,18 +62,52 @@
   }  
   
 .bottomdiv {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
 }
 .graphContainer{
-    
-    width: 40rem; 
-    
+  width: 40rem; 
 }
 .piechartContainer {
-    height: 10rem;
-    width: 26rem;
-    background-color: red;
+  height: 10rem;
+  width: 26rem;
+}
+.rightP {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.rightP .char {
+  display: inline-block;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  animation-delay: calc(var(--index) * 0.05s);
+}
+.gaugeContainer {
+  width: 400px; /* Increase width for a larger panel */
+  height: 200px; /* Increase height to maintain aspect ratio */
+  margin: 10px;
+}
+
+.highcharts-background {
+  fill: none !important; /* Ensure the background is transparent */
+}
+
+.highcharts-tick {
+  display: none; /* Hide ticks for a cleaner look */
+}
+
+.highcharts-tooltip {
+  display: none; /* Hide tooltip if not needed */
+}
+
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
   }
-  
+}

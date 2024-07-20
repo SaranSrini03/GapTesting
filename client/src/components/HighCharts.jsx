@@ -1,5 +1,3 @@
-// HighchartsGraph.js
-
 import React, { useEffect, useRef } from 'react';
 import Highcharts from 'highcharts';
 import PropTypes from 'prop-types';
@@ -12,10 +10,11 @@ const HighchartsGraph = ({ title, data, xAxisTitle, yAxisTitle }) => {
       Highcharts.chart(chartRef.current, {
         chart: {
           type: 'line',
+          backgroundColor: 'rgba(0,0,0,0)',
           responsive: {
             rules: [{
               condition: {
-                maxWidth: 500
+                maxWidth: 100
               },
               chartOptions: {
                 legend: {
@@ -33,12 +32,14 @@ const HighchartsGraph = ({ title, data, xAxisTitle, yAxisTitle }) => {
         xAxis: {
           title: {
             text: xAxisTitle
-          }
+          },
+          gridLineWidth: 0,
         },
         yAxis: {
           title: {
             text: yAxisTitle
-          }
+          },
+          gridLineWidth: 0, 
         },
         tooltip: {
           shared: true,
@@ -52,7 +53,7 @@ const HighchartsGraph = ({ title, data, xAxisTitle, yAxisTitle }) => {
     }
   }, [title, data, xAxisTitle, yAxisTitle]);
 
-  return <div ref={chartRef} style={{ width: '100%', height: '400px' }} />;
+  return <div ref={chartRef} style={{ width: '80%', height: '380px' }} />;
 };
 
 HighchartsGraph.propTypes = {

@@ -5,12 +5,14 @@ import '../styles/MainPage.css';
 
 const MainPage = () => {
   const staticGraphData = [
-    [Date.now() - 1000000000, 100],
-    [Date.now() - 800000000, 110],
-    [Date.now() - 600000000, 120],
-    [Date.now() - 400000000, 130],
-    [Date.now() - 200000000, 140],
-    [Date.now(), 150]
+    [0.1, 1],
+    [0.2, 6],
+    [0.3, 3],
+    [0.4, 9],
+    [0.5, 1],
+    [0.6, 3],
+    [0.7, 7],
+    [0.8, 3],
   ];
 
   const staticPieChartData = [
@@ -19,17 +21,33 @@ const MainPage = () => {
   ];
 
   const [showRightSideBar, setShowRightSideBar] = useState(false);
+  const [tickerInfo, setTickerInfo] = useState({ tickerName: '', startDate: '', endDate: '' });
+  const [gaugeData, setGaugeData] = useState(46); // Example gauge data
 
-  const toggleRightSideBar = () => {
+  const toggleRightSideBar = (info) => {
+    setTickerInfo(info);
     setShowRightSideBar(prevState => !prevState);
   };
+
+  const rectTexts = ['Metric 1', 'Metric 2', 'Metric 3', 'Metric 4']; // Define your text content here
+  const rectSubtitles = ['Subtitle 1', 'Subtitle 2', 'Subtitle 3', 'Subtitle 4']; // Define your subtitle content here
 
   return (
     <div className='wholeContainer'>
       <SideBar onToggleRightSideBar={toggleRightSideBar} />
+      <main className='mainContent'>
+
+      </main>
       <RightSideBar 
         pieChartData={staticPieChartData} 
         show={showRightSideBar}
+        graphData={staticGraphData}
+        tickerName={tickerInfo.tickerName}
+        startDate={tickerInfo.startDate}
+        endDate={tickerInfo.endDate}
+        rectTexts={rectTexts}
+        rectSubtitles={rectSubtitles}
+        gaugeData={gaugeData} // Pass gauge data here
       />
     </div>
   );

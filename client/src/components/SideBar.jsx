@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import Modal from './Modal';
 import '../styles/SideBar.css';
-import RightSideBar from './RightSideBar';
 
 const SideBar = ({ onToggleRightSideBar }) => {
   const formatDate = (date) => {
@@ -32,6 +32,8 @@ const SideBar = ({ onToggleRightSideBar }) => {
   const [tickerName, setTickerName] = useState('');
   const [startDate, setStartDate] = useState(getTenYearsBeforeDate());
   const [endDate, setEndDate] = useState(getTodayDate());
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   // Handle date validation to ensure endDate is after startDate
   const handleDateChange = (e) => {
@@ -40,19 +42,31 @@ const SideBar = ({ onToggleRightSideBar }) => {
       if (new Date(value) <= new Date(endDate)) {
         setStartDate(value);
       } else {
-        alert('Start date must be before end date');
+        setModalMessage('Start date must be before end date');
+        setShowModal(true);
       }
     } else if (name === 'endDate') {
       if (new Date(value) >= new Date(startDate)) {
         setEndDate(value);
       } else {
-        alert('End date must be after start date');
+        setModalMessage('End date must be after start date');
+        setShowModal(true);
       }
     }
   };
 
+  const handleStartBackTesting = () => {
+    if (!tickerName) {
+      setModalMessage('Please enter a Ticker name');
+      setShowModal(true);
+      return;
+    }
+    onToggleRightSideBar({ tickerName, startDate, endDate });
+  };
+
   return (
     <div className='container'>
+      {showModal && <Modal message={modalMessage} onClose={() => setShowModal(false)} />}
       <div className='valueContainer'>
         <h1>Input Parameters</h1>
         <p>Enter Ticker Name</p>
@@ -76,7 +90,7 @@ const SideBar = ({ onToggleRightSideBar }) => {
           value={endDate}
           onChange={handleDateChange}
         />
-        <button onClick={onToggleRightSideBar}>Toggle Right Sidebar</button>
+        <button onClick={handleStartBackTesting}>Start BackTesting</button>
       </div>
     </div>
   );

@@ -17,6 +17,11 @@
     align-items: center;
     border-radius: 10px 0px 0px 10px;
 }
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+  
 h1{
     color: var(--white);
     font-size: 25px;
