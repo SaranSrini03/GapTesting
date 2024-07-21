@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PieChart from './PieChart'; // Import the PieChart component
 import GaugeChart from './GaugeChart'; // Import the GaugeChart component
+import HeatmapChart from './HeatmapChart'; // Import the HeatmapChart component
 import '../styles/RightSideBar.css';
 import HighchartsGraph from './HighCharts';
 import PropTypes from 'prop-types';
 
-const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, endDate, rectTexts, rectSubtitles, gaugeData }) => {
-  const [showRects, setShowRects] = useState([false, false, false,false]); // State to manage the visibility of .rect elements
+const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, endDate, rectTexts, rectSubtitles, gaugeData, heatmapData }) => {
+  const [showRects, setShowRects] = useState([false, false, false, false]); // State to manage the visibility of .rect elements
 
   useEffect(() => {
     if (show) {
@@ -24,7 +25,7 @@ const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, en
         timeouts.forEach(timeout => clearTimeout(timeout));
       };
     } else {
-      setShowRects([false, false, false,false]); // Hide rects when not visible
+      setShowRects([false, false, false, false]); // Hide rects when not visible
     }
   }, [show]);
 
@@ -47,7 +48,6 @@ const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, en
             xAxisTitle="Time" 
             yAxisTitle="Metrics" 
             data={graphData} // Use dynamic graph data
-            
           />
         </div>
         <div className='gaugeContainer'>
@@ -55,6 +55,9 @@ const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, en
         </div>
         <div className='piechartContainer'>
           <PieChart chartData={pieChartData} />
+        </div>
+        <div className='heatmapContainer'>
+          <HeatmapChart data={heatmapData} titleText="Heatmap Chart" />
         </div>
       </div>
     </div>
@@ -76,6 +79,9 @@ RightSideBar.propTypes = {
   rectTexts: PropTypes.arrayOf(PropTypes.string).isRequired,
   rectSubtitles: PropTypes.arrayOf(PropTypes.string).isRequired,
   gaugeData: PropTypes.number.isRequired, // Add gaugeData prop for GaugeChart
+  heatmapData: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+  ).isRequired, // Add heatmapData prop for HeatmapChart
 };
 
 RightSideBar.defaultProps = {
@@ -95,6 +101,18 @@ RightSideBar.defaultProps = {
   rectTexts: ['Metric 1', 'Metric 2', 'Metric 3', 'Metric 4'], // Default texts
   rectSubtitles: ['Subtitle 1', 'Subtitle 2', 'Subtitle 3', 'Subtitle 4'], // Default subtitles
   gaugeData: 50, // Default gauge data
+  heatmapData: [
+    ['A', '1', 10],
+    ['A', '2', 20],
+    ['B', '1', 30],
+    ['B', '2', 40],
+    ['C', '1', 50],
+    ['C', '2', 60],
+    ['D', '1', 70],
+    ['D', '2', 80],
+    ['E', '1', 90],
+    ['E', '2', 100]
+  ], // Default heatmap data
 };
 
 export default RightSideBar;

@@ -81,11 +81,10 @@
 }
 .piechartContainer {
   height: 10rem;
-  width: 26rem;
+  width: 100%;
 }
 .rightP {
   font-size: 1.5rem;
-  background-color: ;
   font-weight: bold;
   text-align: center;
   margin: 0.5rem;
@@ -113,6 +112,11 @@
 
 .highcharts-tooltip {
   display: none; /* Hide tooltip if not needed */
+}
+.heatmapContainer {
+  width: 400px; 
+  height: 900px; 
+  margin: 50px; 
 }
 
 

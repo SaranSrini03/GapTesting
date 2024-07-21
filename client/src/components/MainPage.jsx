@@ -24,7 +24,7 @@ const MainPage = () => {
 
   const [showRightSideBar, setShowRightSideBar] = useState(false);
   const [tickerInfo, setTickerInfo] = useState({ tickerName: '', startDate: '', endDate: '' });
-  const [gaugeData, setGaugeData] = useState(46.29); // Example gauge data
+  const [gaugeData, setGaugeData] = useState(30); // Example gauge data
 
   const toggleRightSideBar = (info) => {
     setTickerInfo(info);

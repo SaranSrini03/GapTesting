@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
 
-const GaugeChart = ({ gaugeData }) => {
+const GaugeChart = ({ gaugeData, titleText }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -13,6 +13,16 @@ const GaugeChart = ({ gaugeData }) => {
 
       // Set chart options with updated configuration
       myChart.setOption({
+        title: {
+          text: titleText || 'Profitability Ratio', // Set title text from props or default
+          left: 'center',
+          top: '5%',
+          textStyle: {
+            fontSize: 20,
+            fontWeight: 'bold',
+            color: '#333'
+          }
+        },
         series: [
           {
             type: 'gauge',
@@ -125,10 +135,10 @@ const GaugeChart = ({ gaugeData }) => {
         window.removeEventListener('resize', handleResize);
       };
     }
-  }, [gaugeData]);
+  }, [gaugeData, titleText]);
 
   return (
-    <div className='gaugeContainer' style={{ width: '450px', height: '450px' }}> {/* Reduced size */}
+    <div className='gaugeContainer' style={{ width: '250px', height: '350px' }}> {/* Reduced size */}
       <div ref={chartRef} style={{ width: '100%', height: '100%' }} />
     </div>
   );
