@@ -8,13 +8,21 @@
 }
 
 .container2 {
-    /* border: 1px solid var(--black); */
-    width: 80%;
-    height: 40rem;
-    border-radius: 0px 10px 10px 0px;
-    margin-top: 20px;
-    margin-left: -32px;
-  }
+  border: 1px solid var(--black);
+  overflow-y: scroll;
+  width: 80%;
+  height: 40rem;
+  border-radius: 0px 10px 10px 0px;
+  margin-top: 20px;
+  margin-left: -32px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+}
+.container2::-webkit-scrollbar{
+  display: none;
+}
+.contai
 .p2 {
   font-size: 1rem;
   font-weight: bold;
