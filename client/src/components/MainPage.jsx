@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SideBar from './SideBar';
 import RightSideBar from './RightSideBar';
 
 import '../styles/MainPage.css';
 
 const MainPage = () => {
+  
+  
   
   const staticGraphData = [
     [0.1, 1],
@@ -18,8 +20,8 @@ const MainPage = () => {
   ];
 
   const staticPieChartData = [
-    { name: 'Sample Data 1', y: 30 },
-    { name: 'Sample Data 2', y: 70 }
+    { name: 'Rate of Sucess', y: 30 },
+    { name: 'Rate of Failure', y: 70 }
   ];
 
   const [showRightSideBar, setShowRightSideBar] = useState(false);

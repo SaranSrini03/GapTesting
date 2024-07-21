@@ -1,0 +1,5 @@
+GET  http://localhost:5000/api/stock-data?symbol=KO&start_date=2024-01-01&end_date=2024-07-21
+
+###
+
+POST http://localhost:5000/api/backtest?symbol=KO&start_date=2024-01-01&end_date=2024-07-21
