@@ -11,6 +11,7 @@ const HighchartsGraph = ({ title, data, xAxisTitle, yAxisTitle }) => {
         chart: {
           type: 'line',
           backgroundColor: 'rgba(0,0,0,0)',
+          
           responsive: {
             rules: [{
               condition: {
@@ -44,6 +45,20 @@ const HighchartsGraph = ({ title, data, xAxisTitle, yAxisTitle }) => {
         tooltip: {
           shared: true,
           valueSuffix: ' units'
+        },
+        plotOptions: {
+          line: {
+            dataLabels: {
+              enabled: false // Optionally, you can enable or disable data labels
+            },
+            enableMouseTracking: true // Optionally, enable or disable mouse tracking
+          },
+          series: {
+            marker: {
+              enabled: false // Disable markers (dots) on the line chart
+            },
+            color:"var(--black)"
+          }
         },
         series: [{
           name: 'Sample Data',

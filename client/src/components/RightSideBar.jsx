@@ -6,7 +6,7 @@ import HighchartsGraph from './HighCharts';
 import PropTypes from 'prop-types';
 
 const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, endDate, rectTexts, rectSubtitles, gaugeData }) => {
-  const [showRects, setShowRects] = useState([false, false, false]); // State to manage the visibility of .rect elements
+  const [showRects, setShowRects] = useState([false, false, false,false]); // State to manage the visibility of .rect elements
 
   useEffect(() => {
     if (show) {
@@ -24,7 +24,7 @@ const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, en
         timeouts.forEach(timeout => clearTimeout(timeout));
       };
     } else {
-      setShowRects([false, false, false]); // Hide rects when not visible
+      setShowRects([false, false, false,false]); // Hide rects when not visible
     }
   }, [show]);
 
@@ -47,6 +47,7 @@ const RightSideBar = ({ pieChartData, show, graphData, tickerName, startDate, en
             xAxisTitle="Time" 
             yAxisTitle="Metrics" 
             data={graphData} // Use dynamic graph data
+            
           />
         </div>
         <div className='gaugeContainer'>

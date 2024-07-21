@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import * as echarts from 'echarts';
-import 'echarts/lib/chart/gauge'; // Import gauge chart module
-import 'echarts/lib/component/title'; // Import title component
 
 const GaugeChart = ({ gaugeData }) => {
   const chartRef = useRef(null);
@@ -13,69 +11,124 @@ const GaugeChart = ({ gaugeData }) => {
       // Initialize ECharts instance
       const myChart = echarts.init(chart);
 
-      // Set chart options with color gradient and dial customization
+      // Set chart options with updated configuration
       myChart.setOption({
-        title: {
-          text: '',
-          subtext: '',
-          left: 'center'
-        },
-        series: [{
-          name: 'Value',
-          type: 'gauge',
-          min: 0,
-          max: 100,
-          splitNumber: 10, // Number of splits
-          axisLine: {
-            lineStyle: {
-              width: 20, // Adjust width if needed
-              color: [
-                [1, new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                  { offset: 0, color: '#FF0000' }, // Start color (Red)
-                  { offset: 0.5, color: '#FFA500' }, // Middle color (Orange)
-                  { offset: 1, color: '#00FF00' }  // End color (Green)
-                ])]
-              ]
-            }
-          },
-          axisTick: {
-            show: false
-          },
-          splitLine: {
-            length: 0
-          },
-          title: {
-            show: false
-          },
-          detail: {
-            formatter: '{value} %',
-            color: '#000'
-          },
-          pointer: {
+        series: [
+          {
+            type: 'gauge',
+            center: ['50%', '60%'],
+            startAngle: 200,
+            endAngle: -20,
+            min: 0,
+            max: 60,
+            splitNumber: 12,
             itemStyle: {
-              color: '#000' // Set the color of the dial/needle here
-            }
+              color: 'black'
+            },
+            progress: {
+              show: true,
+              width: 20 // Reduced width for the progress
+            },
+            pointer: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                width: 20 // Reduced width for the axis line
+              }
+            },
+            axisTick: {
+              distance: -30, // Adjusted distance
+              splitNumber: 5,
+              lineStyle: {
+                width: 1,
+                color: '#999'
+              }
+            },
+            splitLine: {
+              distance: -35, // Adjusted distance
+              length: 10, // Reduced length
+              lineStyle: {
+                width: 2,
+                color: '#999'
+              }
+            },
+            axisLabel: {
+              distance: -15, // Adjusted distance
+              color: 'black',
+              fontSize: 15 // Reduced font size
+            },
+            anchor: {
+              show: false
+            },
+            title: {
+              show: false
+            },
+            detail: {
+              valueAnimation: true,
+              width: '70%', // Reduced width
+              lineHeight: 25, // Adjusted line height
+              borderRadius: 8,
+              offsetCenter: [0, '-10%'], // Adjusted offset
+              fontSize: 25, // Reduced font size
+              fontWeight: 'bolder',
+              formatter: '{value}%',
+              color: 'inherit'
+            },
+            data: [{ value: gaugeData }]
           },
-          data: [{ value: gaugeData, name: 'Value' }]
-        }]
+          {
+            type: 'gauge',
+            center: ['50%', '60%'],
+            startAngle: 200,
+            endAngle: -20,
+            min: 0,
+            max: 60,
+            itemStyle: {
+              color: 'gray'
+            },
+            progress: {
+              show: true,
+              width: 6 // Reduced width for the progress
+            },
+            pointer: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            splitLine: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
+            detail: {
+              show: false
+            },
+            data: [{ value: gaugeData }]
+          }
+        ]
       });
 
       // Handle window resize
-      window.addEventListener('resize', () => {
+      const handleResize = () => {
         myChart.resize();
-      });
+      };
+      window.addEventListener('resize', handleResize);
 
       // Cleanup event listener on unmount
       return () => {
-        window.removeEventListener('resize', () => {
-          myChart.resize();
-        });
+        window.removeEventListener('resize', handleResize);
       };
     }
   }, [gaugeData]);
 
   return (
-    <div className='gaugeContainer' style={{ width: '400px', height: '400px' }}> {/* Increase size here */}
+    <div className='gaugeContainer' style={{ width: '450px', height: '450px' }}> {/* Reduced size */}
       <div ref={chartRef} style={{ width: '100%', height: '100%' }} />
     </div>
   );

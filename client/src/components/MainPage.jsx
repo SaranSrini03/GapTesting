@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import SideBar from './SideBar';
 import RightSideBar from './RightSideBar';
+
 import '../styles/MainPage.css';
 
 const MainPage = () => {
+  
   const staticGraphData = [
     [0.1, 1],
     [0.2, 6],
@@ -22,21 +24,21 @@ const MainPage = () => {
 
   const [showRightSideBar, setShowRightSideBar] = useState(false);
   const [tickerInfo, setTickerInfo] = useState({ tickerName: '', startDate: '', endDate: '' });
-  const [gaugeData, setGaugeData] = useState(46); // Example gauge data
+  const [gaugeData, setGaugeData] = useState(46.29); // Example gauge data
 
   const toggleRightSideBar = (info) => {
     setTickerInfo(info);
     setShowRightSideBar(prevState => !prevState);
   };
 
-  const rectTexts = ['Metric 1', 'Metric 2', 'Metric 3', 'Metric 4']; // Define your text content here
-  const rectSubtitles = ['Subtitle 1', 'Subtitle 2', 'Subtitle 3', 'Subtitle 4']; // Define your subtitle content here
+  const rectTexts = ['Number of Trades', 'Profitability Ratio', 'Volatility', 'Overal P&L Returns']; // Define your text content here
+  const rectSubtitles = ['108.00', '43.52%', '0.74%', '-12.65%']; // Define your subtitle content here
 
   return (
     <div className='wholeContainer'>
       <SideBar onToggleRightSideBar={toggleRightSideBar} />
       <main className='mainContent'>
-
+        
       </main>
       <RightSideBar 
         pieChartData={staticPieChartData} 

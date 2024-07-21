@@ -13,7 +13,7 @@
   width: 80%;
   height: 40rem;
   border-radius: 0px 10px 10px 0px;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: -32px;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -22,12 +22,13 @@
 .container2::-webkit-scrollbar{
   display: none;
 }
-.contai
+
 .p2 {
   font-size: 1rem;
   font-weight: bold;
   margin-top: 30px;
   margin-left: 5rem;
+  text-align: center;
 }
   
 
@@ -84,6 +85,7 @@
 }
 .rightP {
   font-size: 1.5rem;
+  background-color: ;
   font-weight: bold;
   text-align: center;
   margin: 0.5rem;
